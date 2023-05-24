@@ -38,6 +38,12 @@ Repositório conterá o projeto de Programação Orientada a Objetos
 
 - [ ] sistema deverá retornar todos os funcionários que tenham salário entre esses dois valores
 
+- [ ] Caso alguma filial tenha sido selecionada, a busca deverá ser apenas restringida para os funcionários daquela filial.
 
+- [ ] esta ela a listagem deve vir ordenada pelo salário dos Funcionários em ordem ecrescente e conter os seguintes dados: Nome, Salário, CPF e o nome da filial
+
+## IMPORTANTE:
+
+Todos os dados de filial e funcionário deverão ser obrigatórios. Não podem ser armazenado valores vazios. Emitir alerta dizendo que o campo é obrigatório. Caso alguma as buscas e filtros não retornem valores, o sistema deve emitir um aviso(exemplo: “Nenhum Funcionário encontrado com essa faixa salarial”).
 
   
