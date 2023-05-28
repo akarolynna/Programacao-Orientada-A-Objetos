@@ -1,7 +1,14 @@
 # Programacao-Orientada-A-Objetos
 Repositório conterá o projeto de Programação Orientada a Objetos
 
-## Classes do projeto:
+## Configurações iniciais (Banco de dados)
+- [X] Criar o Banco de Dados;
+- [X]Criar o datasource e colocar ele na pasta deploy do Jboss;
+- [X] Passar a pasta META-INF para dentro do meu scr;
+- [X]Colocar dentro do pacote service o GenericService;
+- [X] Configurar página inicial do projeto;
+
+/*  ## Classes do projeto:
 - [ ] Filial
 - [ ] Endereco
 - [ ] Funcionário
@@ -46,4 +53,5 @@ Repositório conterá o projeto de Programação Orientada a Objetos
 
 Todos os dados de filial e funcionário deverão ser obrigatórios. Não podem ser armazenado valores vazios. Emitir alerta dizendo que o campo é obrigatório. Caso alguma as buscas e filtros não retornem valores, o sistema deve emitir um aviso(exemplo: “Nenhum Funcionário encontrado com essa faixa salarial”).
 
+*/
   
