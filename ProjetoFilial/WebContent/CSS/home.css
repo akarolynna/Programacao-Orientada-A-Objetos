@@ -1,0 +1,58 @@
+@charset "ISO-8859-1";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap')
+	;
+
+.principal {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	/* Duas colunas com 50% de largura cada */
+	grid-template-rows: auto; /* Uma linha de altura automática */
+}
+
+.textos {
+	grid-column: 1/2;
+	grid-row: 1;
+	text-align: center;
+	/* Alinha horizontalmente todos os elementos que estiverem dentro da div textos*/
+}
+
+.textos h1 {
+	font-size: 25px;
+	display: grid;
+	margin: 0 auto; /* Centralizar horizontalmente */
+	margin-top: 35px;
+	font-size: 55px;
+	font-family: 'Playfair Display', serif;
+}
+
+.formulario {
+	text-align: justify;
+	margin-top: 40px;
+	margin-left: 80px;
+	margin-right: 80px;
+	font-size: 16.5px;
+	font-family: 'Playfair Display', serif;
+}
+
+.paragrafo {
+	
+	line-height: 2;
+	padding-left: 20px;
+}
+.linkHome {
+  text-decoration: none;
+  color: #3b9cf7;
+}
+
+.imagemTelaInicial {
+	grid-column: 2/2;
+	grid-row: 1;
+}
+
+.imagemTelaInicial img {
+	width: 100%;
+	height: 625px;
+	object-fit: cover;
+}

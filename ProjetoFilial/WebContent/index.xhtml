@@ -1,11 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
+<h:head>
+	<link rel="stylesheet" type="text/css" href="./CSS/home.css" />
+</h:head>
 
-</body> 
+<body>
+	<div class="principal">
+		<div class="textos">
+			<h1>OrganizeGest </h1>
+			<h:form styleClass="formulario">
+				<h:panelGrid columns="1">
+				 <h:outputText value="Este site é uma plataforma abrangente que oferece uma ampla gama de recursos e funcionalidades projetados para facilitar a organização e a gestão eficiente de todas as suas informações organizacionais. Com ferramentas avançadas e intuitivas, você poderá centralizar e acessar facilmente dados relacionados à sua empresa, funcionários e endereços!" styleClass="paragrafo" /> <br/>
+					<h:commandLink action="filial?faces-redirect=true" value="Gerenciar Filiais" styleClass="linkHome" />
+				</h:panelGrid>
+			</h:form>
+		</div>
+		<div class="imagemTelaInicial">
+			<h:graphicImage value="./IMAGEM/work-791218.jpg" />
+
+		</div>
+	</div>
+</body>
 </html>
