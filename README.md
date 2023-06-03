@@ -12,7 +12,7 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 ### Modelagem e Mapeamento das classes:
 - [ ] Modelagem da classe **Funcionário**;
 - [ ] Modelagem da classe **Filial**;
-- [ ] Modelagem da classe **Endereco**;
+- [X] Modelagem da classe **Endereco**;
 
 
 ### Tela Inicial do projeto:
