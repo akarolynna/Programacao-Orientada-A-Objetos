@@ -10,8 +10,8 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 
 
 ### Modelagem e Mapeamento das classes:
-- [ ] Modelagem da classe **Funcionário**;
-- [ ] Modelagem da classe **Filial**;
+- [X] Modelagem da classe **Funcionário**;
+- [X] Modelagem da classe **Filial**;
 - [X] Modelagem da classe **Endereco**;
 
 
@@ -19,8 +19,8 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 - [X] Crie uma página inicial;
 - [X] Configure está página como a tela inicial do projeto;
 - [X] Crie um link nela praa a tela **Gerenciar Filial**;
-- [ ] Crie um link nela praa a tela **Gerenciar Funcionário**;
-- [ ] Crie um link nela praa a tela **Gerenciar Relatório de Funcionários**;
+- [X] Crie um link nela praa a tela **Gerenciar Funcionário**;
+- [X] Crie um link nela praa a tela **Gerenciar Relatório de Funcionários**;
 
 ### Tela Gerenciar Filial:
 - [ ] Cadastrar filial
