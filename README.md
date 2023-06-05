@@ -23,11 +23,11 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 - [X] Crie um link nela praa a tela **Gerenciar Relatório de Funcionários**;
 
 ### Tela Gerenciar Filial:
-- [ ] Cadastrar filial
-- [ ] Editar Filial;
-- [ ] Listar Filial;
+- [X] Cadastrar filial
+- [X] Editar Filial;
+- [X] Listar Filial;
 - [ ] Ordenar filiais pelo nome;
-- [ ] Incluir todos os dados da Filial e **endereço** da mesma.
+- [X] Incluir todos os dados da Filial e **endereço** da mesma.
 - [ ] Adicionar um campo que mostra o número de funcionários daquela filial;
 
 ### Tela Gerenciar Funcionários:
