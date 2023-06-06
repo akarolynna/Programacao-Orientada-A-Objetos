@@ -11,11 +11,19 @@
 <body>
 	<div class="principal">
 		<div class="textos">
-			<h1>OrganizeGest </h1>
+			<h1>OrganizeGest</h1>
 			<h:form styleClass="formulario">
 				<h:panelGrid columns="1">
-				 <h:outputText value="Este site é uma plataforma abrangente que oferece uma ampla gama de recursos e funcionalidades projetados para facilitar a organização e a gestão eficiente de todas as suas informações organizacionais. Com ferramentas avançadas e intuitivas, você poderá centralizar e acessar facilmente dados relacionados à sua empresa, funcionários e endereços!" styleClass="paragrafo" /> <br/>
-					<h:commandLink action="filial?faces-redirect=true" value="Gerenciar Filiais" styleClass="linkHome" />
+					<h:outputText
+						value="Este site é uma plataforma abrangente que oferece uma ampla gama de recursos e funcionalidades projetados para facilitar a organização e a gestão eficiente de todas as suas informações organizacionais. Com ferramentas avançadas e intuitivas, você poderá centralizar e acessar facilmente dados relacionados à sua empresa, funcionários e relatórios!"
+						styleClass="paragrafo" />
+					<br />
+					<h:commandLink action="filial?faces-redirect=true"
+						value="Gerenciar Filiais" styleClass="linkHome" />
+					<h:commandLink action="funcionario?faces-redirect=true"
+						value="Gerenciar Funcionários" styleClass="linkHome" />
+					<h:commandLink action="relatorio?faces-redirect=true"
+						value="Gerenciar Relatório" styleClass="linkHome" />
 				</h:panelGrid>
 			</h:form>
 		</div>

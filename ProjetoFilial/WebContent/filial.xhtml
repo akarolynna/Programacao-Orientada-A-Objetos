@@ -1,11 +1,92 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
-<h1>FILIALLLL BEBE</h1>
-</body> 
+<h:head></h:head>
+<body>
+
+	<h:form styleClass="2-colunas-de-formulario">
+		<h:panelGrid columns="2">
+
+			<h:outputLabel value="Nome: " />
+			<h:inputText value="#{filialBean.filial.nome}" required="true" />
+
+			<h:outputLabel value="CNPJ: " />
+			<h:inputText value="#{filialBean.filial.cnpj}" required="true" />
+
+			<h:outputLabel value="Rua: " />
+			<h:inputText value="#{filialBean.filial.endereco.rua}"
+				required="true" />
+
+			<h:outputLabel value="Número: " />
+			<h:inputText value="#{filialBean.filial.endereco.numero}"
+				required="true" />
+
+			<h:outputLabel value="Bairro: " />
+			<h:inputText value="#{filialBean.filial.endereco.bairro}"
+				required="true" />
+
+			<h:outputLabel value="Cidade: " />
+			<h:inputText value="#{filialBean.filial.endereco.cidade}"
+				required="true" />
+
+			<h:outputLabel value="CEP: " />
+			<h:inputText value="#{filialBean.filial.endereco.cep}"
+				required="true" />
+
+			<h:commandButton action="#{filialBean.gravar()}" value="Gravar"  rendered="#{filialBean.gravar()}"/>
+			<h:commandButton action="#{filialBean.atualizarDadosFilial()}" value="Atualizar" rendered="#{!filialBean.gravar()}" />
+
+
+		</h:panelGrid>
+	</h:form>
+	<h:form>
+		<h:dataTable value="#{filialBean.filiais}" var="filialAtual"
+			border="2">
+
+			<h:column>
+				<f:facet name="header">Nome:</f:facet>
+				<h:outputText value="#{filialAtual.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">CNPJ:</f:facet>
+				<h:outputText value="#{filialAtual.cnpj}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Rua:</f:facet>
+				<h:outputText value="#{filialAtual.endereco.rua}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Número:</f:facet>
+				<h:outputText value="#{filialAtual.endereco.numero}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Bairro:</f:facet>
+				<h:outputText value="#{filialAtual.endereco.bairro}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Cidade:</f:facet>
+				<h:outputText value="#{filialAtual.endereco.cidade}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">CEP:</f:facet>
+				<h:outputText value="#{filialAtual.endereco.cep}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Opções:</f:facet>
+				<h:commandButton action="#{filialBean.selecionandoFilial(filialAtual)}"
+					value="Editar" />
+					</h:column>
+		</h:dataTable>
+	</h:form>
+
+</body>
 </html>
