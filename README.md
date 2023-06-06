@@ -26,7 +26,7 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 - [X] Cadastrar filial
 - [X] Editar Filial;
 - [X] Listar Filial;
-- [ ] Ordenar filiais pelo nome;
+- [X] Ordenar filiais pelo nome;
 - [X] Incluir todos os dados da Filial e **endereço** da mesma.
 - [ ] Adicionar um campo que mostra o número de funcionários daquela filial;
 
