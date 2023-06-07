@@ -31,12 +31,12 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 - [ ] Adicionar um campo que mostra o número de funcionários daquela filial;
 
 ### Tela Gerenciar Funcionários:
-- [ ] Cadastrar Funcionário;
-- [ ] Editar Funcionário;
-- [ ] Listar Funcionário;
-- [ ] Excluir Funcionário;
-- [ ] Incluir todos os dados de Funcionários e seus respectivo **endereço**;
-- [ ] Ordenar os funcionários pelo nome;
+- [X] Cadastrar Funcionário;
+- [X] Editar Funcionário;
+- [X] Listar Funcionário;
+- [X] Excluir Funcionário;
+- [] Incluir todos os dados de Funcionários e seus respectivo **endereço**;
+- [X] Ordenar os funcionários pelo nome;
 - [ ] Certifique-se de que a edição de funcionários não permita a troca de filial e exiba um alerta caso o usuário tente fazê-lo;
 
 ### Implementar filtro na tela de Gerenciar Funcionários:
