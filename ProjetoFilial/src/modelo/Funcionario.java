@@ -1,4 +1,4 @@
-package modelo;
+  package modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class Funcionario {
 	
 	
 	public Funcionario() {
-		
+		  endereco = new Endereco(); 
 	}
 
 

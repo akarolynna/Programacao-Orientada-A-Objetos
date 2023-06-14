@@ -47,7 +47,6 @@ public abstract class GenericService<T> {
 		return entity;
 	}
 	
-    
     public List<T> listAll(){
     	final CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();	
     	final CriteriaQuery<T> cQuery = cb.createQuery(classe);

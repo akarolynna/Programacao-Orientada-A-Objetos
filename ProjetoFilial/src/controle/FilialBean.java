@@ -19,11 +19,15 @@ public class FilialBean {
 
 	private Filial filial = new Filial();
 	private List<Filial> filiais = new ArrayList<Filial>();
+
+	private int numeroFuncionariosFilial;
+	private String tituloPagina;
 	
 
 	@PostConstruct
 	public void inicializar() {
 		motrarFiliais();
+		tituloTelaInicial();
 	}
 
 	public void gravar() {
@@ -39,28 +43,27 @@ public class FilialBean {
 	
 	public void atualizarDadosFilial() {
 		filialService.atualizarFilial(filial);
-		filial = new Filial(); // filial está recebendo uma nova instancia
+		filial = new Filial(); 
 		motrarFiliais();
-		gravar = true; //atualizamos a lista
+		gravar = true; 
+		tituloTelaInicial();
 	}
 	
-	//Esse carinha quando eu clicar nele ele levará as informações da filial que eu cliquei lá para serem mudadas
+	
 	public void selecionandoFilial(Filial f) { 
+		 tituloTelaEditar();
 		filial = f;
 		gravar = false;
+		
 	}
-	/* ESSE REMOVER SERVIRÁ DE BASE PARA O MEU REMOVER EM FUNCIONARIO, POREM FILIAL NÃO TEM REMOVE
-	public void excluirFilial(Filial filial) {
-		filialService.excluirFilial(filial);
-		motrarFiliais();
+	public void tituloTelaInicial() {
+		tituloPagina = "Cadastro de Filial";
 	}
-	
-	
-	
-	*/
-	
-	
-	// Métodos Getters and setters
+	public void tituloTelaEditar() {
+		tituloPagina = "Edição de Filial";
+	}
+
+	// Mï¿½todos Getters and setters
 	public FilialService getFilialService() {
 		return filialService;
 	}
@@ -91,6 +94,22 @@ public class FilialBean {
 
 	public void setGravar(Boolean gravar) {
 		this.gravar = gravar;
+	}
+
+	public int getNumeroFuncionariosFilial() {
+		return numeroFuncionariosFilial;
+	}
+
+	public void setNumeroFuncionariosFilial(int numeroFuncionariosFilial) {
+		this.numeroFuncionariosFilial = numeroFuncionariosFilial;
+	}
+
+	public String getTituloPagina() {
+		return tituloPagina;
+	}
+
+	public void setTituloPagina(String tituloPagina) {
+		this.tituloPagina = tituloPagina;
 	}
 
 }
