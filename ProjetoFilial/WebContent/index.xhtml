@@ -1,13 +1,30 @@
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
 	<link rel="stylesheet" type="text/css" href="./CSS/home.css" />
+	
 </h:head>
-
 <body>
+<h:form>
+<div class="corpoBody">
+<div class="logo">
+	<h:graphicImage value="/IMAGEM/imgLogo.png" alt="Imagem Logo" styleClass="imagemTelaInicial"  />
+	<h:outputText value="OrganizeGest" styleClass="textoLogo" />
+</div>
+		<div class="navbar">
+			<ul>
+				<li><h:commandLink action="filial?faces-redirect=true" value="Gerenciar Filiais" styleClass="linkHome" /></li>
+				<li><h:commandLink action="funcionario?faces-redirect=true" value="Gerenciar Funcionários" styleClass="linkHome" /></li>
+				<li><h:commandLink action="relatorio?faces-redirect=true" value="Gerenciar Relatórios" styleClass="linkHome" /></li>
+			</ul>
+		</div>
+	</div>
+</h:form>
 	<div class="principal">
 		<div class="textos">
 			<h1>OrganizeGest</h1>
@@ -15,20 +32,14 @@
 				<h:panelGrid columns="1">
 					<h:outputText
 						value="Este site é uma plataforma abrangente que oferece uma ampla gama de recursos e funcionalidades projetados para facilitar a organização e a gestão eficiente de todas as suas informações organizacionais. Com ferramentas avançadas e intuitivas, você poderá centralizar e acessar facilmente dados relacionados à sua empresa, funcionários e relatórios!"
-						styleClass="paragrafo" />
-					<br />
-					<h:commandLink action="filial?faces-redirect=true" value="Gerenciar Filiais"
-						styleClass="linkHome" />
-					<h:commandLink action="funcionario?faces-redirect=true" value="Gerenciar Funcionários"
-						styleClass="linkHome" />
-					<h:commandLink action="relatorio?faces-redirect=true" value="Gerenciar Relatório"
-						styleClass="linkHome" />
+						styleClass="paragrafo" /><br/>
+					<h:commandLink action="filial?faces-redirect=true" value="Começar" styleClass="linkPrincipal" />
+
 				</h:panelGrid>
 			</h:form>
 		</div>
-		<div class="imagemTelaInicial">
-			<h:graphicImage value="./IMAGEM/work-791218.jpg" />
-
+		<div>
+			<h:graphicImage value="/IMAGEM/imgInicial.png" alt="Imagem da Tela Inicial" Styleclass="imagemTelaInicial" />
 		</div>
 	</div>
 </body>

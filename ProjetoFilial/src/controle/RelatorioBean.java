@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.SelectItem;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -24,14 +23,14 @@ public class RelatorioBean {
 	private FilialService filialService;
 	@EJB
 	private FuncionarioService funcionarioService;
+	private Long idFilial = 0L;
 
-	private Long idFilial;
-
-	private List<SelectItem> filiais = new ArrayList<SelectItem>();
+  private Filial filial;
+	private List<Filial> filiais = new ArrayList<Filial>();
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
-	private double salarioMinimo;
-	private double salarioMaximo;
+	private Double salarioMinimo = null;
+	private Double salarioMaximo = null;
 
 	@PostConstruct
 	public void iniciar() {
@@ -40,67 +39,35 @@ public class RelatorioBean {
 	}
 
 	public void carregarFiliais() {
-		filiais.clear();
-		List<Filial> listaFiliais = filialService.listarFiliaisPorNome();
-
-		for (Filial filial : listaFiliais) {
-			filiais.add(new SelectItem(filial.getId(), filial.getNome()));
-		}
+		filiais = filialService.listarFiliaisPorNome();
 	}
-
 	public void gerarRelatorio() {
-		if (idFilial != null) {
-			if (idFilial.equals(-1L)) {
-				funcionarios = funcionarioService.listarTodosFuncionarios();
+	    if (idFilial == null || idFilial.equals(-1L)) {
+	        if (salarioMinimo == 0.0 && salarioMaximo == 0.0) {
+	            funcionarios = funcionarioService.listarFuncionariosOrdenadoPorSalario();
+	        } else {
+	            funcionarios = funcionarioService.listarFuncionarioPorFaixaSalarial(salarioMinimo, salarioMaximo);
+	        }
+	    } else {
+	        Filial filial = filialService.obtemPorId(idFilial);
+	        if (filial != null) {
+	            if (salarioMinimo == 0.0 && salarioMaximo == 0.0) {
+	                funcionarios = funcionarioService.listarFuncionariosPorFilialOrdenadoPorSalario(filial);
+	            } else {
+	                funcionarios = funcionarioService.listarFuncionarioPorFaixaSalarialEFilial(filial.getId(), salarioMinimo, salarioMaximo);
+	            }
+	        }
+	    }
 
-				if (funcionarios.isEmpty()) {
-					FacesContext.getCurrentInstance().addMessage("msg1",
-							new FacesMessage("Não há registro de funcionários!"));
-				}
-			} else {
-				Filial filial = filialService.obtemPorId(idFilial);
-				if (filial != null) {
-					funcionarios = funcionarioService.listarFuncionariosPorFilial(filial);
-
-					if (funcionarios.isEmpty()) {
-						FacesContext.getCurrentInstance().addMessage("msg1",
-								new FacesMessage("A filial selecionada não possui registros de funcionarios."));
-					}
-				}
-			}
-		} else {
-			funcionarios = funcionarioService.listarTodosFuncionarios();
-		}
-
-		funcionarios = funcionarioService.listarFuncionariosPorFaixaSalarial(salarioMinimo, salarioMaximo);
+	    if (funcionarios.isEmpty()) {
+	        FacesContext.getCurrentInstance().addMessage("msg1",
+	                new FacesMessage("Nenhum Funcionário encontrado com essa faixa salarial!"));
+	    }
 	}
+
 
 	// Getters e setters
-
-	public Long getIdFilial() {
-		return idFilial;
-	}
-
-	public void setIdFilial(Long idFilial) {
-		this.idFilial = idFilial;
-	}
-
-	public List<SelectItem> getFiliais() {
-		return filiais;
-	}
-
-	public void setFiliais(List<SelectItem> filiais) {
-		this.filiais = filiais;
-	}
-
-	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
-	}
-
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
-	}
-
+	
 	public FilialService getFilialService() {
 		return filialService;
 	}
@@ -117,20 +84,52 @@ public class RelatorioBean {
 		this.funcionarioService = funcionarioService;
 	}
 
-	public double getSalarioMinimo() {
+	public Long getIdFilial() {
+		return idFilial;
+	}
+
+	public void setIdFilial(Long idFilial) {
+		this.idFilial = idFilial;
+	}
+
+	public Filial getFilial() {
+		return filial;
+	}
+
+	public void setFilial(Filial filial) {
+		this.filial = filial;
+	}
+
+	public List<Filial> getFiliais() {
+		return filiais;
+	}
+
+	public void setFiliais(List<Filial> filiais) {
+		this.filiais = filiais;
+	}
+
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
+	public Double getSalarioMinimo() {
 		return salarioMinimo;
 	}
 
-	public void setSalarioMinimo(double salarioMinimo) {
+	public void setSalarioMinimo(Double salarioMinimo) {
 		this.salarioMinimo = salarioMinimo;
 	}
 
-	public double getSalarioMaximo() {
+	public Double getSalarioMaximo() {
 		return salarioMaximo;
 	}
 
-	public void setSalarioMaximo(double salarioMaximo) {
+	public void setSalarioMaximo(Double salarioMaximo) {
 		this.salarioMaximo = salarioMaximo;
 	}
-
+	
 }

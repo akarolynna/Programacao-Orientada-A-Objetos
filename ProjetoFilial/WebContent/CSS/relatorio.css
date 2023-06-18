@@ -1,0 +1,148 @@
+@charset "ISO-8859-1";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.paginaPrincipal {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 20px;
+	height: 85vh;
+}
+
+.corpoFormulario {
+	text-align: left;
+	margin-top: 55px;
+}
+
+.corpoFormulario h1 {
+	font-size: 35px;
+	font-family: 'Playfair Display', serif;
+	margin-bottom: 2rem;
+}
+
+.imagemFilial {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 25px;
+}
+
+.imagemFilial .imagem {
+	max-width: 100%;
+	height: auto;
+	max-height: 100%;
+	object-fit: contain;
+	margin-right: 2rem;
+}
+
+.colunasFormulario {
+	margin-left: 120px;
+}
+
+@media screen and (max-width: 768px) {
+	.colunasFormulario {
+		margin-left: 0;
+	}
+}
+
+/*/<h:inputText> é renderizado como uma tag <input> no HTML. Portanto, para aplicar o estilo corretamente, foi preciso  usar o seletor input no CSS.
+Aqui está o código CSS atualizado para estilizar corretamente o <h:inputText>:*/
+input[type="text"] {
+	display: block;
+	width: 20rem;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.selectEstilo {
+	margin-bottom: 7px;
+	padding: 5px;
+	color: white;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #018dee;
+	font-size: 15px;
+	font-family: 'Playfair Display', serif;
+}
+
+.botaoG {
+	width: auto;
+	display: block;
+	margin-top: 20px;
+	padding: 10px 20px;
+	background-color: #00bb50;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	transition: background-color 0.3s ease;
+}
+
+.botaoG:hover {
+	background-color: #ff5500;
+}
+
+.alertaErro {
+	margin-top: 15px; font-size : 18px;
+	list-style: none;
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: 0.25rem;
+	font-size: 18px;
+}
+
+.Resultados {
+	
+	margin-left : 20px;
+	margin-right: 20px;
+	margin-bottom: 150px;
+	margin-left: 20px;
+}
+
+.Resultados table {
+	width: 100%;
+	margin-bottom: 20px;
+	vertical-align: top;
+	border-collapse: collapse;
+	border: none;
+	text-align: center; /* Adicionado para centralizar os elementos */
+}
+
+.Resultados th, .Resultados td {
+	padding: 0.75rem;
+	vertical-align: top;
+	border: 1px solid #dee2e6;
+	text-align: center; /* Adicionado para centralizar os elementos */
+}
+
+.Resultados th {
+	background-color: #018dee;
+	color: white;
+	text-align: center; /* Adicionado para centralizar os elementos */
+}
+
+.Resultados tbody+tbody {
+	border-top: 0.25px solid #fafafa;
+}
+
+.Resultados th {
+	background-color: #018dee; /* Cor de fundo para todos os headers */
+	color: white; /* Cor do texto dos headers */
+}

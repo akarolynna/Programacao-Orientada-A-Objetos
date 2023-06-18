@@ -3,86 +3,116 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+    <link rel="stylesheet" type="text/css" href="./CSS/home.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/filial.css" />
+</h:head>
 
 <body>
-<h1>#{filialBean.tituloPagina}</h1>
-	<h:form styleClass="2-colunas-de-formulario">
-		<h:panelGrid columns="2">
+<h:form>
+<div class="corpoBody">
+<div class="logo">
+	<h:graphicImage value="/IMAGEM/imgLogo.png" alt="Imagem Logo" styleClass="imagemTelaInicial"  />
+	<h:outputText value="OrganizeGest" styleClass="textoLogo" />
+</div>
+		<div class="navbar">
+			<ul>
+				<li><h:commandLink action="index?faces-redirect=true" value="Página Inicial" styleClass="linkHome" /></li>
+				<li><h:commandLink action="funcionario?faces-redirect=true" value="Gerenciar Funcionários" styleClass="linkHome" /></li>
+				<li><h:commandLink action="relatorio?faces-redirect=true" value="Gerenciar Relatórios" styleClass="linkHome" /></li>
+			</ul>
+		</div>
+	</div>
+</h:form>
 
+<div class="paginaPrincipal">
+<div class="corpoFormulario">
+<h:form styleClass="colunasFormulario">
+        
+        <h1>#{filialBean.tituloPagina}</h1>
+		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome: " />
-			<h:inputText value="#{filialBean.filial.nome}" required="true" />
+			<h:inputText  value="#{filialBean.filial.nome}" required="true" requiredMessage="O campo Nome é obrigatório! Logo, não pode ficar em branco!!" id="nome" />
 
 			<h:outputLabel value="CNPJ: " />
-			<h:inputText value="#{filialBean.filial.cnpj}" required="true" />
-
+			<h:inputText value="#{filialBean.filial.cnpj}" required="true"  requiredMessage="O campo CNPJ é obrigatório! Logo, não pode ficar em branco!!" id="CNPJ"/>
 
 			<h:outputLabel value="Rua: " />
-			<h:inputText value="#{filialBean.filial.endereco.rua}" required="true" />
+			<h:inputText value="#{filialBean.filial.endereco.rua}" required="true" requiredMessage="O campo RUA é obrigatório! Logo, não pode ficar em branco!!" id="rua" />
 
 			<h:outputLabel value="Número: " />
-			<h:inputText value="#{filialBean.filial.endereco.numero}" required="true" />
+			<h:inputText value="#{filialBean.filial.endereco.numero}" required="true" requiredMessage="O campo Número é obrigatório! Logo, não pode ficar em branco!!" id="numero"/>
 
-			<h:outputLabel value="Bairro: " />
-			<h:inputText value="#{filialBean.filial.endereco.bairro}" required="true" />
+            <h:outputLabel value="Bairro: " />
+			<h:inputText value="#{filialBean.filial.endereco.bairro}" required="true"  requiredMessage="O campo Bairro é obrigatório! Logo, não pode ficar em branco!!" id="bairro"/>
 
 			<h:outputLabel value="Cidade: " />
-			<h:inputText value="#{filialBean.filial.endereco.cidade}" required="true" />
+			<h:inputText value="#{filialBean.filial.endereco.cidade}" required="true" requiredMessage="O campo Cidade é obrigatório! Logo, não pode ficar em branco!!" id="cidade"/>
 
 			<h:outputLabel value="CEP: " />
-			<h:inputText value="#{filialBean.filial.endereco.cep}" required="true" />
-
-			<h:commandButton action="#{filialBean.gravar()}" value="Gravar" rendered="#{filialBean.gravar()}" />
+			<h:inputText value="#{filialBean.filial.endereco.cep}" required="true" requiredMessage="O campo CEP é obrigatório! Logo, não pode ficar em branco!!" id="CEP"/>
+      
+			<h:commandButton action="#{filialBean.gravar()}" value="Gravar" rendered="#{filialBean.gravar()}" styleClass="botaoG"/>
 			<h:commandButton action="#{filialBean.atualizarDadosFilial()}" value="Atualizar"
-				rendered="#{!filialBean.gravar()}" />
-
-
+				rendered="#{!filialBean.gravar()}" styleClass="botaoG"/>
 		</h:panelGrid>
+		<h:messages id="msg1" styleClass="alertaErro" />
 	</h:form>
+	</div>
+	<div class="corpoImagem">
+			<div class="imagemFilial">
+				<h:graphicImage value="/IMAGEM/imgFilial.png" alt="Imagem Filial" styleClass="imagem"  />
+			</div>
+	</div>
+	</div>
+	
+	<div class="Resultados">
 	<h:form>
 		<h:dataTable value="#{filialBean.filiais}" var="filialAtual" border="2">
 
 			<h:column>
-				<f:facet name="header">Nome:</f:facet>
+				<f:facet name="header">Nome</f:facet>
 				<h:outputText value="#{filialAtual.nome}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">CNPJ:</f:facet>
-				<h:outputText value="#{filialAtual.cnpj}" />
+				<f:facet name="header">CNPJ</f:facet>
+				<h:outputText value="#{filialBean.formatarCNPJ(filialAtual.cnpj)}" />
 			</h:column>
+			
 			<h:column>
-				<f:facet name="header">Rua:</f:facet>
+				<f:facet name="header">Rua</f:facet>
 				<h:outputText value="#{filialAtual.endereco.rua}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Número:</f:facet>
+				<f:facet name="header">Número</f:facet>
 				<h:outputText value="#{filialAtual.endereco.numero}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Bairro:</f:facet>
+				<f:facet name="header">Bairro</f:facet>
 				<h:outputText value="#{filialAtual.endereco.bairro}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Cidade:</f:facet>
+				<f:facet name="header">Cidade</f:facet>
 				<h:outputText value="#{filialAtual.endereco.cidade}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">CEP:</f:facet>
+				<f:facet name="header">CEP</f:facet>
 				<h:outputText value="#{filialAtual.endereco.cep}" />
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">Opções:</f:facet>
-				<h:commandButton action="#{filialBean.selecionandoFilial(filialAtual)}" value="Editar" />
+				<h:commandButton action="#{filialBean.selecionandoFilial(filialAtual)}" value="Editar" styleClass="editarEstilo"/>
 			</h:column>
+			
 		</h:dataTable>
 	</h:form>
-
+</div>
 </body>
 
 </html>

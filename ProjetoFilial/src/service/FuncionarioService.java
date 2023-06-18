@@ -1,16 +1,17 @@
 package service;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Path;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
-
+import javax.persistence.criteria.Predicate;
 import modelo.Filial;
 import modelo.Funcionario;
 
@@ -69,35 +70,107 @@ public class FuncionarioService extends GenericService<Funcionario> {
 	}
 
 	public List<Funcionario> listarFuncionariosPorFilial(Filial filial) {
-	    EntityManager em = getEntityManager();
-	    TypedQuery<Funcionario> query = em.createQuery("SELECT f FROM Funcionario f WHERE f.filial = :filial", Funcionario.class);
-	    query.setParameter("filial", filial);
-	    return query.getResultList();
+	    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	    CriteriaQuery<Funcionario> cquery = cb.createQuery(Funcionario.class);
+	    Root<Funcionario> rootFuncionario = cquery.from(Funcionario.class);
+
+	    cquery.select(rootFuncionario);
+	    cquery.where(cb.equal(rootFuncionario.get("filial"), filial));
+
+	    TypedQuery<Funcionario> query = getEntityManager().createQuery(cquery);
+	    List<Funcionario> funcionarios = query.getResultList();
+
+	    return funcionarios;
+	
 	}
+	
 	public List<Funcionario> listarTodosFuncionarios() {
-	    EntityManager em = getEntityManager();
-	    TypedQuery<Funcionario> query = em.createQuery("SELECT f FROM Funcionario f", Funcionario.class);
-	    return query.getResultList();
+	    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	    CriteriaQuery<Funcionario> cquery = cb.createQuery(Funcionario.class);
+	    Root<Funcionario> rootFuncionario = cquery.from(Funcionario.class);
+
+	    cquery.select(rootFuncionario);
+
+	    TypedQuery<Funcionario> query = getEntityManager().createQuery(cquery);
+	    List<Funcionario> funcionarios = query.getResultList();
+
+	    return funcionarios;
 	}
 
-	public List<Funcionario> listarFuncionariosPorFaixaSalarial(double salarioMinimo, double salarioMaximo) {
-	    List<Funcionario> funcionarios = listarTodosFuncionarios(); 
-	    
-	    List<Funcionario> funcionariosFiltrados = new ArrayList<Funcionario>(); 
+	public List<Funcionario> listarFuncionarioPorFaixaSalarial(double salarioMinimo, double salarioMaximo) {
+	    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	    CriteriaQuery<Funcionario> query = cb.createQuery(Funcionario.class);
+	    Root<Funcionario> rootFuncionario = query.from(Funcionario.class);
 
-	    for (Funcionario funcionario : funcionarios) {
-	        double salario = funcionario.getSalario(); 
-	        
-	        if (salario >= salarioMinimo && salario <= salarioMaximo) {
-	            funcionariosFiltrados.add(funcionario); 
-	        }
+	    query.select(rootFuncionario);
+
+	    List<Predicate> predicates = new ArrayList<Predicate>();
+
+	    Path<Double> salarioPath = rootFuncionario.get("salario");
+	    predicates.add(cb.between(salarioPath, cb.literal(salarioMinimo), cb.literal(salarioMaximo)));
+
+	    query.where(predicates.toArray(new Predicate[0]));
+	    query.orderBy(cb.desc(salarioPath));
+
+	    return getEntityManager().createQuery(query).getResultList();
+	}
+
+
+
+	public List<Funcionario> listarFuncionarioPorFaixaSalarialEFilial(Long idFilial, double salarioMinimo, double salarioMaximo) {
+	    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	    CriteriaQuery<Funcionario> query = cb.createQuery(Funcionario.class);
+	    Root<Funcionario> rootFuncionario = query.from(Funcionario.class);
+
+	    query.select(rootFuncionario);
+
+	    List<Predicate> predicates = new ArrayList<Predicate>();
+
+	    // Verifica se todas as filiais foram selecionadas
+	    if (idFilial != null && idFilial != -1L) {
+	        Join<Funcionario, Filial> joinFilial = rootFuncionario.join("filial");
+	        predicates.add(cb.equal(joinFilial.get("id"), idFilial));
 	    }
-	    
-	    return funcionariosFiltrados;
+
+	    Path<Double> salarioPath = rootFuncionario.get("salario");
+	    predicates.add(cb.between(salarioPath, cb.literal(salarioMinimo), cb.literal(salarioMaximo)));
+
+	    query.where(predicates.toArray(new Predicate[0]));
+	    query.orderBy(cb.desc(salarioPath));
+
+	    return getEntityManager().createQuery(query).getResultList();
 	}
+	
+	public List<Funcionario> listarFuncionariosOrdenadoPorSalario() {
+	    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	    CriteriaQuery<Funcionario> cquery = cb.createQuery(Funcionario.class);
+	    Root<Funcionario> rootFuncionario = cquery.from(Funcionario.class);
 
+	    cquery.select(rootFuncionario);
+	    cquery.orderBy(cb.desc(rootFuncionario.get("salario")));
 
+	    TypedQuery<Funcionario> query = getEntityManager().createQuery(cquery);
+	    List<Funcionario> funcionarios = query.getResultList();
 
+	    return funcionarios;
+	}
+	
+	public List<Funcionario> listarFuncionariosPorFilialOrdenadoPorSalario(Filial filial) {
+	    CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+	    CriteriaQuery<Funcionario> cquery = cb.createQuery(Funcionario.class);
+	    Root<Funcionario> rootFuncionario = cquery.from(Funcionario.class);
 
+	    cquery.select(rootFuncionario);
+	    cquery.where(cb.equal(rootFuncionario.get("filial"), filial));
+	    cquery.orderBy(cb.desc(rootFuncionario.get("salario")));
+
+	    TypedQuery<Funcionario> query = getEntityManager().createQuery(cquery);
+	    List<Funcionario> funcionarios = query.getResultList();
+
+	    return funcionarios;
+	}
 
 }
+
+
+

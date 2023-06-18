@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
 @Entity
 public class Funcionario {
 	@Id @GeneratedValue
@@ -13,7 +14,8 @@ public class Funcionario {
 	private String nome;
 	private Integer idade;
 	private String cpf;
-	private double salario; 
+	
+	private Double salario; 
 	
 	@OneToOne
 	private Endereco endereco;
@@ -65,13 +67,12 @@ public class Funcionario {
 		this.cpf = cpf;
 	}
 
-
-	public double getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
 
 
-	public void setSalario(double salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 
