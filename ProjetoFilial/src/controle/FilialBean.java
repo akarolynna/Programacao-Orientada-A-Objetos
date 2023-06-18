@@ -20,18 +20,17 @@ public class FilialBean {
 
 	@EJB
 	private FilialService filialService;
-	
+
 	@EJB
 	private FuncionarioService funcionarioService;
-	 
+
 	public Boolean gravar = true;
 
 	private Filial filial = new Filial();
 	private List<Filial> filiais = new ArrayList<Filial>();
 	private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
-    private int numeroFuncionarios;
+	private int numeroFuncionarios;
 	private String tituloPagina;
-	
 
 	@PostConstruct
 	public void inicializar() {
@@ -42,8 +41,8 @@ public class FilialBean {
 	public void gravar() {
 		String cnpjFormatado = formatarCNPJ(filial.getCnpj());
 		if (cnpjFormatado.equals("CNPJ inválido")) {
-			FacesContext.getCurrentInstance().addMessage("msg1",
-					new FacesMessage("A operação não pode ser  realizada, pois o número de CNPJ é inválido!"));
+			FacesContext.getCurrentInstance().addMessage("msg1",new FacesMessage("A operação não pode ser  realizada, pois o número de CNPJ é inválido!"));
+			
 			// Limpa os campos preenchidos pelo usuário
 			filial = new Filial();
 			return;
@@ -96,8 +95,12 @@ public class FilialBean {
 		gravar = false;
 	}
 
-	
+	public int obterNumeroFuncionarios(Filial filial) {
+		return filialService.obterNumeroFuncionarios(filial);
+	}
+
 	// Métodos Getters and setters
+	
 	public Filial getFilial() {
 		return filial;
 	}

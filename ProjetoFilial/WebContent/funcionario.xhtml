@@ -6,176 +6,204 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-   <link rel="stylesheet" type="text/css" href="./CSS/home.css" />
+<link rel="stylesheet" type="text/css" href="./CSS/home.css" />
+ <link rel="stylesheet" type="text/css" href="./CSS/funcionario.css" />
 </h:head>
 
 <body>
+	<h:form>
+		<div class="corpoBody">
+			<h:form></h:form>
+			<div class="logo">
+				<h:graphicImage value="/IMAGEM/imgLogo.png" alt="Imagem Logo"
+					styleClass="imagemTelaInicial" />
+				<h:outputText value="OrganizeGest" styleClass="textoLogo" />
+			</div>
+			<div class="navbar">
+				<ul>
+					<li><h:commandLink action="index?faces-redirect=true"
+							value="Página Inicial" styleClass="linkHome" /></li>
+					<li><h:commandLink action="filial?faces-redirect=true"
+							value="Gerenciar Filial" styleClass="linkHome" /></li>
+					<li><h:commandLink action="relatorio?faces-redirect=true"
+							value="Gerenciar Relatórios" styleClass="linkHome" /></li>
+				</ul>
+			</div>
+		</div>
+	</h:form>
 
-<h:form>
-<div class="corpoBody">
-<div class="logo">
-	<h:graphicImage value="/IMAGEM/imgLogo.png" alt="Imagem Logo" styleClass="imagemTelaInicial"  />
-	<h:outputText value="OrganizeGest" styleClass="textoLogo" />
-</div>
-		<div class="navbar">
-			<ul>
-				<li><h:commandLink action="index?faces-redirect=true" value="Página Inicial" styleClass="linkHome" /></li>
-				<li><h:commandLink action="filial?faces-redirect=true" value="Gerenciar Filial" styleClass="linkHome" /></li>
-				<li><h:commandLink action="relatorio?faces-redirect=true" value="Gerenciar Relatórios" styleClass="linkHome" /></li>
-			</ul>
+
+	<div class="paginaPrincipal">
+		<div class="corpoFormulario">
+			<h:form styleClass="colunasFormulario">
+				<h1>#{funcionarioBean.tituloPagina}</h1>
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome:" />
+					<h:inputText value="#{funcionarioBean.funcionario.nome}"
+						required="true"
+						requiredMessage="O campo Nome é obrigatório!Logo, não pode ficar em branco!!"
+						id="nome" />
+
+					<h:outputLabel value="Idade:" />
+					<h:inputText value="#{funcionarioBean.funcionario.idade}"
+						required="true"
+						requiredMessage="O campo Idade é obrigatório!Logo, não pode ficar em branco!!"
+						id="idade" />
+
+					<h:outputLabel value="CPF:" />
+					<h:inputText value="#{funcionarioBean.funcionario.cpf}"
+						required="true"
+						requiredMessage="O campo CPF é obrigatório!Logo, não pode ficar em branco!!"
+						id="CPF" />
+
+					<h:outputLabel value="Salario:" />
+					<h:inputText value="#{funcionarioBean.funcionario.salario}"
+						required="true"
+						requiredMessage="O campo Salario é obrigatório!Logo, não pode ficar em branco!!"
+						id="salario" />
+
+					<h:outputLabel value="Rua:" />
+					<h:inputText value="#{funcionarioBean.funcionario.endereco.rua}"
+						required="true"
+						requiredMessage="O campo Rua é obrigatório!Logo, não pode ficar em branco!!"
+						id="rua" />
+
+					<h:outputLabel value="Número:" />
+					<h:inputText value="#{funcionarioBean.funcionario.endereco.numero}"
+						required="true"
+						requiredMessage="O campo Número é obrigatório!Logo, não pode ficar em branco!!"
+						id="numero" />
+
+					<h:outputLabel value="Bairro:" />
+					<h:inputText value="#{funcionarioBean.funcionario.endereco.bairro}"
+						required="true"
+						requiredMessage="O campo Bairro é obrigatório!Logo, não pode ficar em branco!!"
+						id="bairro" />
+
+					<h:outputLabel value="Cidade:" />
+					<h:inputText value="#{funcionarioBean.funcionario.endereco.cidade}"
+						required="true"
+						requiredMessage="O campo Cidade é obrigatório!Logo, não pode ficar em branco!!"
+						id="cidade" />
+
+					<h:outputLabel value="CEP:" />
+					<h:inputText value="#{funcionarioBean.funcionario.endereco.cep}"
+						required="true"
+						requiredMessage="O campo CEP é obrigatório!Logo, não pode ficar em branco!!"
+						id="CEP" />
+
+					<h:outputLabel value="Filial:" for="filial" />
+					<h:selectOneMenu value="#{funcionarioBean.idFilial}"
+						disabled="#{!funcionarioBean.gravar}" id="filial"
+						styleClass="selectEstilo">
+						<f:selectItems value="#{funcionarioBean.filiais}"
+							var="filialAtual" itemLabel="#{filialAtual.nome}"
+							itemValue="#{filialAtual.id}" />
+					</h:selectOneMenu>
+
+
+					<h:commandButton action="#{funcionarioBean.gravar()}"
+						value="Gravar" rendered="#{funcionarioBean.gravar()}"
+						styleClass="botaoG" />
+					<h:commandButton action="#{funcionarioBean.editar()}"
+						value="EDITAR" rendered="#{!funcionarioBean.gravar()}"
+						styleClass="botaoG" />
+
+				</h:panelGrid>
+				<h:message id="msg2" for="filial" styleClass="alertaErro" />
+				<h:messages id="msg3" styleClass="alertaErro" />
+			</h:form>
+		</div>
+		<div class="corpoImagem">
+			<div class="imagemFilial">
+				<h:graphicImage value="/IMAGEM/3529197-removebg-preview.png"
+					alt="Imagem Funcionario" styleClass="imagem" />
+			</div>
 		</div>
 	</div>
-</h:form>
-	<h1>#{funcionarioBean.tituloPagina}</h1>
+	
+	<div class="pesquisaDiv">
+		<h:form styleClass="formPesquisa">
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Funcionario:" />
+				<h:inputText value="#{funcionarioBean.texto}" />
+				<h:commandButton action="#{funcionarioBean.pesquisar()}"
+					value="Pesquisar" styleClass="botaoPesquisa" />
+			</h:panelGrid>
+		</h:form>
+	</div>
 
-	<h:form>
-		<h:panelGrid columns="3">
+	<div class="Resultados">
+		<h:form>
+			<h:dataTable value="#{funcionarioBean.funcionarios}"
+				var="funcionarioAtual" border="2">
 
-			<h:outputLabel value="Nome:" />
-			<h:inputText value="#{funcionarioBean.funcionario.nome}"
-				required="true"
-				requiredMessage="O campo Nome é obrigatório!Logo, não pode ficar em branco!!"
-				id="nome" />
-			<h:message for="nome" />
+				<h:column>
+					<f:facet name="header">Nome:</f:facet>
+					<h:outputText value="#{funcionarioAtual.nome}" />
+				</h:column>
 
-			<h:outputLabel value="Idade:" />
-			<h:inputText value="#{funcionarioBean.funcionario.idade}"
-				required="true"
-				requiredMessage="O campo Idade é obrigatório!Logo, não pode ficar em branco!!"
-				id="idade" />
-			<h:message for="idade" />
-			<h:outputLabel value="CPF:" />
-			<h:inputText value="#{funcionarioBean.funcionario.cpf}"
-				required="true"
-				requiredMessage="O campo CPF é obrigatório!Logo, não pode ficar em branco!!"
-				id="CPF" />
-			<h:message for="CPF" />
+				<h:column>
+					<f:facet name="header">Idade:</f:facet>
+					<h:outputText value="#{funcionarioAtual.idade}" />
+				</h:column>
 
-			<h:outputLabel value="Salario:" />
-			<h:inputText value="#{funcionarioBean.funcionario.salario}"
-				required="true"
-				requiredMessage="O campo Salario é obrigatório!Logo, não pode ficar em branco!!"
-				id="salario" />
-			<h:message for="salario" />
-			<h:outputLabel value="Rua:" />
-			<h:inputText value="#{funcionarioBean.funcionario.endereco.rua}"
-				required="true"
-				requiredMessage="O campo Rua é obrigatório!Logo, não pode ficar em branco!!"
-				id="rua" />
-			<h:message for="rua" />
-			<h:outputLabel value="Número:" />
-			<h:inputText value="#{funcionarioBean.funcionario.endereco.numero}"
-				required="true"
-				requiredMessage="O campo Número é obrigatório!Logo, não pode ficar em branco!!"
-				id="numero" />
-			<h:message for="numero" />
-			<h:outputLabel value="Bairro:" />
-			<h:inputText value="#{funcionarioBean.funcionario.endereco.bairro}"
-				required="true"
-				requiredMessage="O campo Bairro é obrigatório!Logo, não pode ficar em branco!!"
-				id="bairro" />
-			<h:message for="bairro" />
-			<h:outputLabel value="Cidade:" />
-			<h:inputText value="#{funcionarioBean.funcionario.endereco.cidade}"
-				required="true"
-				requiredMessage="O campo Cidade é obrigatório!Logo, não pode ficar em branco!!"
-				id="cidade" />
-			<h:message for="cidade" />
-			<h:outputLabel value="CEP:" />
-			<h:inputText value="#{funcionarioBean.funcionario.endereco.cep}"
-				required="true"
-				requiredMessage="O campo CEP é obrigatório!Logo, não pode ficar em branco!!"
-				id="CEP" />
-			<h:message for="CEP" />
-			<h:outputLabel value="Filial:" for="filial" />
-			<h:selectOneMenu value="#{funcionarioBean.idFilial}"
-				disabled="#{!funcionarioBean.gravar}" id="filial">
-				<f:selectItems value="#{funcionarioBean.filiais}" var="filialAtual"
-					itemLabel="#{filialAtual.nome}" itemValue="#{filialAtual.id}" />
-			</h:selectOneMenu>
-			<h:message for="" />
+				<h:column>
+					<f:facet name="header">CPF:</f:facet>
+					<h:outputText
+						value="#{funcionarioBean.formatarCPF(funcionarioAtual.cpf)}" />
 
-			<h:commandButton action="#{funcionarioBean.gravar()}" value="Gravar"
-				rendered="#{funcionarioBean.gravar()}" />
-			<h:commandButton action="#{funcionarioBean.editar()}" value="EDITAR"
-				rendered="#{!funcionarioBean.gravar()}" />
+				</h:column>
 
-		</h:panelGrid>
-	</h:form>
-	<h:message id="msg2" for="filial" />
-	<h:messages id="msg3"/>
-	<h:form>
-		<h:panelGrid columns="3">
-			<h:outputLabel value="Funcionario:" />
-			<h:inputText value="#{funcionarioBean.texto}" />
-			<h:commandButton action="#{funcionarioBean.pesquisar()}"
-				value="Pesquisar" />
-		</h:panelGrid>
-		<h:dataTable value="#{funcionarioBean.funcionarios}"
-			var="funcionarioAtual" border="2">
+				<h:column>
+					<f:facet name="header">Salario:</f:facet>
+					<h:outputText value="#{funcionarioAtual.salario}">
+						<f:convertNumber type="currency" currencySymbol="R$" />
+					</h:outputText>
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">Nome:</f:facet>
-				<h:outputText value="#{funcionarioAtual.nome}" />
-			</h:column>
+				<h:column>
+					<f:facet name="header">Rua:</f:facet>
+					<h:outputText value="#{funcionarioAtual.endereco.rua}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">Idade:</f:facet>
-				<h:outputText value="#{funcionarioAtual.idade}" />
-			</h:column>
+				<h:column>
+					<f:facet name="header">Número:</f:facet>
+					<h:outputText value="#{funcionarioAtual.endereco.numero}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">CPF:</f:facet>
-				<h:outputText
-					value="#{funcionarioBean.formatarCPF(funcionarioAtual.cpf)}" />
+				<h:column>
+					<f:facet name="header">Bairro:</f:facet>
+					<h:outputText value="#{funcionarioAtual.endereco.bairro}" />
+				</h:column>
 
-			</h:column>
+				<h:column>
+					<f:facet name="header">Cidade:</f:facet>
+					<h:outputText value="#{funcionarioAtual.endereco.cidade}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">Salario:</f:facet>
-				<h:outputText value="#{funcionarioAtual.salario}">
-					<f:convertNumber type="currency" currencySymbol="R$" />
-				</h:outputText>
-			</h:column>
+				<h:column>
+					<f:facet name="header">CEP:</f:facet>
+					<h:outputText value="#{funcionarioAtual.endereco.cep}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">Rua:</f:facet>
-				<h:outputText value="#{funcionarioAtual.endereco.rua}" />
-			</h:column>
+				<h:column>
+					<f:facet name="header">Filial:</f:facet>
+					<h:outputText value="#{funcionarioAtual.filial.nome}" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">Número:</f:facet>
-				<h:outputText value="#{funcionarioAtual.endereco.numero}" />
-			</h:column>
+				<h:column>
+					<f:facet name="header">Opções:</f:facet>
+					<h:commandButton
+						action="#{funcionarioBean.selecionarFuncionario(funcionarioAtual)}" value="EDITAR" styleClass="editarEstilo" />
+					<h:commandButton
+						action="#{funcionarioBean.excluir(funcionarioAtual)}" value="EXCLUIR" styleClass="btnExcluir" />
+				</h:column>
 
-			<h:column>
-				<f:facet name="header">Bairro:</f:facet>
-				<h:outputText value="#{funcionarioAtual.endereco.bairro}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Cidade:</f:facet>
-				<h:outputText value="#{funcionarioAtual.endereco.cidade}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">CEP:</f:facet>
-				<h:outputText value="#{funcionarioAtual.endereco.cep}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Filial:</f:facet>
-				<h:outputText value="#{funcionarioAtual.filial.nome}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Opções:</f:facet>
-				<h:commandButton
-					action="#{funcionarioBean.selecionarFuncionario(funcionarioAtual)}"
-					value="EDITAR" />
-				<h:commandButton
-					action="#{funcionarioBean.excluir(funcionarioAtual)}"
-					value="EXCLUIR" />
-			</h:column>
-		</h:dataTable>
-	</h:form>
+			</h:dataTable>
+		</h:form>
+	</div>
 </body>
 
 </html>

@@ -46,7 +46,7 @@
 	}
 }
 
-/*/<h:inputText> é renderizado como uma tag <input> no HTML. Portanto, para aplicar o estilo corretamente, foi preciso  usar o seletor input no CSS.
+/*<h:inputText> é renderizado como uma tag <input> no HTML. Portanto, para aplicar o estilo corretamente, foi preciso  usar o seletor input no CSS.
 Aqui está o código CSS atualizado para estilizar corretamente o <h:inputText>:*/
 input[type="text"] {
 	display: block;
@@ -96,7 +96,8 @@ input[type="text"] {
 }
 
 .alertaErro {
-	margin-top: 15px; font-size : 18px;
+	margin-top: 15px;
+	font-size: 18px;
 	list-style: none;
 	color: #721c24;
 	background-color: #f8d7da;
@@ -109,8 +110,7 @@ input[type="text"] {
 }
 
 .Resultados {
-	
-	margin-left : 20px;
+	margin-left: 20px;
 	margin-right: 20px;
 	margin-bottom: 150px;
 	margin-left: 20px;

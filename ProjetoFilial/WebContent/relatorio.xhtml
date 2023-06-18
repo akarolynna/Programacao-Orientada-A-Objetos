@@ -6,88 +6,96 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-<link rel="stylesheet" type="text/css" href="./CSS/relatorio.css" />
-   <link rel="stylesheet" type="text/css" href="./CSS/home.css" />
+	<link rel="stylesheet" type="text/css" href="./CSS/relatorio.css" />
+	<link rel="stylesheet" type="text/css" href="./CSS/home.css" />
 </h:head>
 
 <body>
-<h:form>
-<div class="corpoBody">
-<div class="logo">
-	<h:graphicImage value="/IMAGEM/imgLogo.png" alt="Imagem Logo" styleClass="imagemTelaInicial"  />
-	<h:outputText value="OrganizeGest" styleClass="textoLogo" />
-</div>
-		<div class="navbar">
-			<ul>
-				<li><h:commandLink action="index?faces-redirect=true" value="Página Inicial" styleClass="linkHome" /></li>
-				<li><h:commandLink action="filial?faces-redirect=true" value="Gerenciar Filial" styleClass="linkHome" /></li>
-				<li><h:commandLink action="funcionario?faces-redirect=true" value="Gerenciar Funcionários" styleClass="linkHome" /></li>
-				
-			</ul>
+	<h:form>
+		<div class="corpoBody">
+			<div class="logo">
+				<h:graphicImage value="/IMAGEM/imgLogo.png" alt="Imagem Logo"
+					styleClass="imagemTelaInicial" />
+				<h:outputText value="OrganizeGest" styleClass="textoLogo" />
+			</div>
+			<div class="navbar">
+				<ul>
+					<li><h:commandLink action="index?faces-redirect=true"
+							value="Página Inicial" styleClass="linkHome" /></li>
+					<li><h:commandLink action="filial?faces-redirect=true"
+							value="Gerenciar Filial" styleClass="linkHome" /></li>
+					<li><h:commandLink action="funcionario?faces-redirect=true"
+							value="Gerenciar Funcionários" styleClass="linkHome" /></li>
+
+				</ul>
+			</div>
+		</div>
+	</h:form>
+
+	<div class="paginaPrincipal">
+		<div class="corpoFormulario">
+			<h:form styleClass="colunasFormulario">
+				<h1>Gerar Relatório</h1>
+				<h:panelGrid columns="2">
+					<h:outputLabel
+						value="Escolha a filial para filtrar os funcionários:" />
+
+					<h:selectOneMenu value="#{relatorioBean.idFilial}"
+						styleClass="selectEstilo">
+						<f:selectItem itemLabel="Todas as Filiais" itemValue="-1" />
+						<f:selectItems value="#{relatorioBean.filiais}" var="filial"
+							itemLabel="#{filial.nome}" itemValue="#{filial.id}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Salário Inicial:" />
+					<h:inputText value="#{relatorioBean.salarioMinimo}" />
+
+					<h:outputLabel value="Salário Final:" />
+					<h:inputText value="#{relatorioBean.salarioMaximo}" />
+
+					<h:commandButton value="Gerar Relatório"
+						action="#{relatorioBean.gerarRelatorio}" styleClass="botaoG" />
+				</h:panelGrid>
+				<h:messages id="msg1" styleClass="alertaErro" />
+			</h:form>
+		</div>
+		
+		<div class="corpoImagem">
+			<div class="imagemFilial">
+				<h:graphicImage value="/IMAGEM/3530322-removebg-preview(1).png"
+					alt="Imagem Relatório" styleClass="imagem" />
+			</div>
 		</div>
 	</div>
-</h:form>
 
+	<div class="Resultados">
+		<h:dataTable value="#{relatorioBean.funcionarios}"
+			var="funcionarioAtual"
+			rendered="#{not empty relatorioBean.funcionarios}" border="2">
 
-<div class="paginaPrincipal">
-<div class="corpoFormulario">
-	<h:form styleClass="colunasFormulario">
-	<h1>Gerar Relatório</h1>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Escolha a filial para filtrar os funcionários:" />
-			
-			<h:selectOneMenu value="#{relatorioBean.idFilial}" styleClass="selectEstilo">
-				<f:selectItem itemLabel="Todas as Filiais" itemValue="-1" />
-				<f:selectItems value="#{relatorioBean.filiais}" var="filial"
-				itemLabel="#{filial.nome}" itemValue="#{filial.id}"  />
-			</h:selectOneMenu>
+			<h:column>
+				<f:facet name="header">Nome:</f:facet>
+				<h:outputText value="#{funcionarioAtual.nome}" />
+			</h:column>
 
-			<h:outputLabel value="Salário Inicial:" />
-			<h:inputText value="#{relatorioBean.salarioMinimo}" />
+			<h:column>
+				<f:facet name="header">Salario:</f:facet>
+				<h:outputText value="#{funcionarioAtual.salario}">
+					<f:convertNumber type="currency" currencySymbol="R$" />
+				</h:outputText>
+			</h:column>
 
-			<h:outputLabel value="Salário Final:" />
-			<h:inputText value="#{relatorioBean.salarioMaximo}" />
+			<h:column>
+				<f:facet name="header">CPF:</f:facet>
+				<h:outputText
+					value="#{funcionarioBean.formatarCPF(funcionarioAtual.cpf)}" />
+			</h:column>
 
-			<h:commandButton value="Gerar Relatório"
-				action="#{relatorioBean.gerarRelatorio}" styleClass="botaoG"/>
-		</h:panelGrid>
-		<h:messages id="msg1" styleClass="alertaErro" />
-	</h:form>
-	</div>
-	<div class="corpoImagem">
-			<div class="imagemFilial">
-				<h:graphicImage value="/IMAGEM/3530322-removebg-preview(1).png" alt="Imagem Relatório" styleClass="imagem"  />
-			</div>
-	</div>
-	</div>
-	
-<div class="Resultados">
-	<h:dataTable value="#{relatorioBean.funcionarios}"
-		var="funcionarioAtual"
-		rendered="#{not empty relatorioBean.funcionarios}" border="2">
-
-		<h:column>
-			<f:facet name="header">Nome:</f:facet>
-			<h:outputText value="#{funcionarioAtual.nome}" />
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">Salario:</f:facet>
-			<h:outputText value="#{funcionarioAtual.salario}">
-				<f:convertNumber type="currency" currencySymbol="R$" />
-			</h:outputText>
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">CPF:</f:facet>
-			<h:outputText value="#{funcionarioBean.formatarCPF(funcionarioAtual.cpf)}"/>
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">Filial:</f:facet>
-			<h:outputText value="#{funcionarioAtual.filial.nome}" />
-		</h:column>
-	</h:dataTable>
+			<h:column>
+				<f:facet name="header">Filial:</f:facet>
+				<h:outputText value="#{funcionarioAtual.filial.nome}" />
+			</h:column>
+		</h:dataTable>
 	</div>
 </body>
 

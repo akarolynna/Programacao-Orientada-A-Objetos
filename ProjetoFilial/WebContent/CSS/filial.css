@@ -8,8 +8,6 @@
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 20px;
 	height: 100vh;
-	
-	
 }
 
 .corpoFormulario {
@@ -17,7 +15,7 @@
 }
 
 .corpoFormulario h1 {
-	margin-top:68px;
+	margin-top: 68px;
 	font-size: 35px;
 	font-family: 'Playfair Display', serif;
 	margin-bottom: 2rem;
@@ -48,8 +46,7 @@
 	}
 }
 
-/*/<h:inputText> é renderizado como uma tag <input> no HTML. Portanto, para aplicar o estilo corretamente, você precisa usar o seletor input no CSS.
-Aqui está o código CSS atualizado para estilizar corretamente o <h:inputText>:*/
+
 input[type="text"] {
 	display: block;
 	width: 20rem;
@@ -77,8 +74,9 @@ input[type="text"] {
 }
 
 .Resultados {
-	margin-top: 110px; /* É aqui que alteramos a altura entre nosso alert e nossa table */
-	margin-left : 20px;
+	margin-top: 110px;
+	/* É aqui que alteramos a altura entre nosso alert e nossa table */
+	margin-left: 20px;
 	margin-right: 20px;
 	margin-bottom: 150px;
 	position: relative;

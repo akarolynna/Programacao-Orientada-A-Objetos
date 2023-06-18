@@ -53,8 +53,7 @@
 			<h:inputText value="#{filialBean.filial.endereco.cep}" required="true" requiredMessage="O campo CEP é obrigatório! Logo, não pode ficar em branco!!" id="CEP"/>
       
 			<h:commandButton action="#{filialBean.gravar()}" value="Gravar" rendered="#{filialBean.gravar()}" styleClass="botaoG"/>
-			<h:commandButton action="#{filialBean.atualizarDadosFilial()}" value="Atualizar"
-				rendered="#{!filialBean.gravar()}" styleClass="botaoG"/>
+			<h:commandButton action="#{filialBean.atualizarDadosFilial()}" value="Atualizar" rendered="#{!filialBean.gravar()}" styleClass="botaoG"/>
 		</h:panelGrid>
 		<h:messages id="msg1" styleClass="alertaErro" />
 	</h:form>
@@ -104,15 +103,18 @@
 				<f:facet name="header">CEP</f:facet>
 				<h:outputText value="#{filialAtual.endereco.cep}" />
 			</h:column>
-
-			<h:column>
+			
+				<h:column>
+					<f:facet name="header">Número de Funcionários</f:facet>
+					<h:outputText value="#{filialBean.filialService.obterNumeroFuncionarios(filialAtual)}" />
+				</h:column>
+				
+				<h:column>
 				<f:facet name="header">Opções:</f:facet>
 				<h:commandButton action="#{filialBean.selecionandoFilial(filialAtual)}" value="Editar" styleClass="editarEstilo"/>
 			</h:column>
-			
 		</h:dataTable>
 	</h:form>
 </div>
 </body>
-
 </html>
