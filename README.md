@@ -38,24 +38,24 @@ Repositório conterá o projeto de Programação Orientada a Objetos. **Todos os
 - [X] Incluir todos os dados de Funcionários e seus respectivo **endereço**;
 - [X] Ordenar os funcionários pelo nome;
 - [X] Certifique-se de que a edição de funcionários não permita a troca de filial e exiba um alerta caso o usuário tente fazê-lo;
-- [ ] Exibir uma mensagem caso algum campo fique em branco;
+- [X] Exibir uma mensagem caso algum campo fique em branco;
 
 ### Implementar filtro na tela de Gerenciar Funcionários:
-- [ ] Adicionar a funcionalidade de listagem de funcionário pelo nome ou parte dele ***USE LIKE**;
-- [ ] Caso campo fique em branco listar todos os funcionários;
+- [X] Adicionar a funcionalidade de listagem de funcionário pelo nome ou parte dele ***USE LIKE**;
+- [X] Caso campo fique em branco listar todos os funcionários;
 
 ### Tela de Relatórios:
-- [ ] Filtre funcionários por filial;
-- [ ] Filtre funcionários por faixa salarial;
-- [ ] Implemente campos de seleção para filial;
-- [ ] Implemente campos de input para a faixa salarial;
-- [ ] Liste os funcionários por salário em **ORDEM DECRESCENTE**;
-- [ ] Incluir os dados solicitados **NOME, SALARIO, CPF E NOME DA FILIAL**
-- [ ] Considere também a opção de "Todas as Filiais" no filtro;
+- [X] Filtre funcionários por filial;
+- [X] Filtre funcionários por faixa salarial;
+- [X] Implemente campos de seleção para filial;
+- [X] Implemente campos de input para a faixa salarial;
+- [X] Liste os funcionários por salário em **ORDEM DECRESCENTE**;
+- [X] Incluir os dados solicitados **NOME, SALARIO, CPF E NOME DA FILIAL**
+- [X] Considere também a opção de "Todas as Filiais" no filtro;
 
 ### Formatação e validação dos dados:
-- [ ] Formatação adequada para moeda, CPF e CNPJ nas listagens;
-- [ ] Todos os dados de Filial são obrigatórios;
-- [ ] Todos os dados de Funcionário são obrigatórios;
-- [ ] Caso fique em branco um dos campos deve-se emitir um alerta na tela;
-- [ ] Implementar msgs de aviso caso as buscas e filtros não retornem nenhum valor;
+- [X] Formatação adequada para moeda, CPF e CNPJ nas listagens;
+- [X] Todos os dados de Filial são obrigatórios;
+- [X] Todos os dados de Funcionário são obrigatórios;
+- [X] Caso fique em branco um dos campos deve-se emitir um alerta na tela;
+- [X] Implementar msgs de aviso caso as buscas e filtros não retornem nenhum valor;
